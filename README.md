@@ -14,48 +14,57 @@ O projeto está dividido nas seguintes camadas:
 
 ## Funcionalidades do Sistema
 
-A seguir, uma lista de exemplos de funções que representam o menu do sistema. As permissões para acessar essas funções são determinadas pelo perfil do usuário:
+A seguir, uma lista de exemplos de funções que representam o menu do sistema. As permissões para acessar essas funções são determinadas pelo perfil do usuário. Cada função possui uma indicação do progresso atual.
 
 ### Menu Principal
 
-1. **Dashboard**
+1. **Dashboard** <br>
+    <progress value="0" max="100"></progress>
     - Visão geral das atividades do pet-shop.
 
-2. **Clientes**
+2. **Clientes** <br>
+    <progress value="0" max="100"></progress>
     - Cadastro de Clientes
     - Consulta de Clientes
     - Atualização de Dados dos Clientes
 
-3. **Pets**
+3. **Pets** <br>
+    <progress value="0" max="100"></progress>
     - Cadastro de Pets
     - Consulta de Pets
     - Atualização de Informações dos Pets
 
-4. **Agendamentos**
+4. **Agendamentos** <br>
+    <progress value="0" max="100"></progress>
     - Agendamento de Serviços
     - Consulta de Agendamentos
     - Cancelamento de Agendamentos
 
-5. **Serviços**
+5. **Serviços** <br>
+    <progress value="0" max="100"></progress>
     - Lista de Serviços Oferecidos
     - Preços e Descrições dos Serviços
 
-6. **Produtos**
+6. **Produtos** <br>
+    <progress value="0" max="100"></progress>
     - Cadastro de Produtos
     - Consulta de Produtos
     - Atualização de Informações dos Produtos
 
-7. **Vendas**
+7. **Vendas** <br>
+    <progress value="0" max="100"></progress>
     - Registro de Vendas
     - Histórico de Vendas
     - Relatórios de Vendas
 
-8. **Funcionários**
+8. **Funcionários** <br>
+    <progress value="0" max="100"></progress>
     - Cadastro de Funcionários
     - Consulta de Funcionários
     - Atribuição de Permissões e Perfis
 
-9. **Configurações**
+9. **Configurações** <br>
+    <progress value="0" max="100"></progress>
     - Parâmetros do Sistema
     - Gestão de Perfis e Permissões
     - Configurações de Segurança
