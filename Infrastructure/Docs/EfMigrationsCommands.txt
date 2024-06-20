@@ -1,0 +1,5 @@
+﻿Criação da Migration do Identity:
+- dotnet ef migrations add ControleAcesso --context ControleAcessoContext --startup-project WebAppMVC --project Infrastructure
+
+Update da Migration do Identity:
+- dotnet ef database update --context ControleAcessoContext --startup-project WebAppMVC --project Infrastructure

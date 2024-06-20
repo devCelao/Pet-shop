@@ -1,0 +1,39 @@
+﻿<!-- Modal -->
+@if (TempData["LoginInfos"] is IEnumerable<string> infos && infos.Any())
+{
+
+    <div class="modal fade" id="infosModal" tabindex="-1" role="dialog" aria-labelledby="infosModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div id="myModalContent">
+
+                    <div class="modal-header">
+                        <h4 class="modal-title">Bem vindo</h4>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="alert alert-primary alert-dismissible fade show" role="alert">
+
+                        <!--h4 class="alert-heading">Bem vindo!</h4>
+                        <hr /-->
+
+                        <ul>
+                            @{
+                                foreach (var info in infos)
+                                {
+                                    <li>@info</li>
+                                }
+                            }
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        $(document).ready(function () {
+            $('#infosModal').modal('show');
+        });
+    </script>
+}

@@ -1,0 +1,124 @@
+﻿@using Services;
+@inject IAspNetUserService AspNetUser
+
+<style>
+    .closebtn {
+        margin: 0 30px 0 0;
+        top: 0;
+        right: 25px;
+        font-size: 36px;
+    }
+    
+    .sidenav {
+        width: 280px;
+        height: 100vh;
+        background-color: #2F1242;
+        transition: 0.5s;
+        font-family: "Lato", sans-serif;
+    }
+    
+    .sidenav a {
+        padding: 8px 8px 8px 32px;
+        text-decoration: none;
+        font-size: 25px;
+        color: #818181;
+        transition: 0.8s;
+    }
+    
+    .closebtn:hover {
+        color: #f1f1f1;
+    }
+    .nav-item a:hover {
+        color: #f1f1f1;
+        background-color: #f799f7;
+    }
+</style>
+<script>
+    function navOperation() {
+        let content = document.getElementById("contentMenu");
+        let sideNav = document.getElementById("mySidenav").style;
+
+        if (content.hidden) 
+            sideNav.width = "280px";
+        else 
+            sideNav.width = "85px";
+
+        content.hidden = !content.hidden;
+    }
+</script>
+
+
+@if (AspNetUser.IsAuthenticated)
+{
+    <nav id="mySidenav" class="col-md-2 d-none d-md-block padding-top sidenav">
+        <a href="javascript:void(0)" class="d-flex flex-row-reverse closebtn" onclick="navOperation()">&#9776;</a>
+        <div id="contentMenu">
+            <div class="dropdown-divider "></div>
+            <div class="row-sm text-center">
+                <div class="col">
+                    <h4 id="basic-addon1" style="color:white;">@AspNetUser.UserName</h4>
+                </div>
+
+            </div>
+            <div class="sidebar-sticky ">
+                <ul class="nav flex-column ">
+                    <!-- Home -->
+                    <li class="nav-item">
+                        <a class="nav-link collapsed rounded" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                    </li>
+
+                    @if (AspNetUser.isAdmin)
+                    {
+                        <!-- Controle de Acesso -->
+                        <!-- Cadastrar Novo Perfil -->
+                        <li class="nav-item">
+                            <a class="nav-link collapsed rounded" data-bs-target="#controle-acesso" data-bs-toggle="collapse" href="#">
+                                <span>Controle de Acesso</span>
+                            </a>
+                            <ul id="controle-acesso" class="collapse">
+                                <li class="nav-item">
+                                    <a class="nav-link rounded" asp-area="" asp-controller="ControleAcesso" asp-action="Index">
+                                        <span>Permissões</span>
+                                    </a>
+                                </li>
+
+                            </ul>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link collapsed rounded" data-bs-target="#perfil" data-bs-toggle="collapse" href="#">
+                                <span>Perfil</span>
+                            </a>
+                            <ul id="perfil" class="collapse">
+                                <li class="nav-item">
+                                    <a class="nav-link rounded" asp-area="" asp-controller="Perfil" asp-action="NovoCadastro">
+                                        <span>Cadastrar</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link rounded" asp-area="" asp-controller="Perfil" asp-action="Index">
+                                        <span>Buscar</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                    }
+                    <!-- Outros -->
+                    <li class="nav-item">
+                        <a class="nav-link rounded" asp-area="" asp-controller="Account" asp-action="Logout">
+                            <span>Sair</span>
+                        </a>
+                    </li>
+
+                    <!-------------------------------------- REMOVER -->
+                    <li class="nav-item">
+                        <a class="nav-link rounded" asp-area="" asp-controller="Account" asp-action="Index">
+                            <span>Login</span>
+                        </a>
+                    </li>
+                    <!-------------------------------------- REMOVER -->
+                </ul>
+            </div>
+        </div>
+    </nav>
+}

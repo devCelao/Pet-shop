@@ -1,0 +1,26 @@
+﻿@model ForgotPasswordViewModel
+
+
+
+<div class="d-flex justify-content-center align-items-center">
+    <section class="bg-form">
+        <form asp-controller="Account" asp-action="Logar" method="post" class="signin-form">
+            <label for="Username" class="col-sm-2 col-form-label">Usuário</label>
+            <div class="input-group mb-3">
+                <input asp-for="Username" type="text" name="Username" class="form-control" id="Username" placeholder="Username" required>
+            </div>
+
+            <label for="Email" class="col-sm-2 col-form-label">Email</label>
+            <div class="input-group mb-3">
+                <input asp-for="Email" type="email" name="Email" class="form-control" aria-label="Email" aria-describedby="basic-addon1" placeholder="Digite seu e-mail" required>
+            </div>
+
+             <div class="form-group  text-center">
+                <button type="submit" class="form-control btn btn-primary submit px-3">Enviar</button>
+                <small >
+                    <a asp-area="" asp-controller="Account" asp-action="Index" style="color: #007bff">Voltar para Login</a>
+                </small>
+            </div>
+        </form>
+    </section>
+</div>

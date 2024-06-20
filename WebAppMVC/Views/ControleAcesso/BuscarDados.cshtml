@@ -1,0 +1,54 @@
+﻿@model ControleAcessoViewModel
+
+
+@* REFATORAR AS PERMISSOES! *@
+
+<section class="container padding-y">
+    <div class="container text-center">
+        <div class="row" style="width: 70%;">
+            <!-- Formulário para adicionar permissão -->
+            <form asp-action="CadastrarPermissao" asp-controller="ControleAcesso" method="post" class="form-inline mb-4">
+                
+                <div class="input-group mb-2">
+                    <input asp-for="Username" type="text" class="form-control text-center fw-bolder"  aria-label="Username" aria-describedby="basic-addon1" value="@Model.Username" readonly>
+                    <input asp-for="Permissao" type="text" class="form-control" placeholder="Código da Permissão" aria-label="Permissao" aria-describedby="basic-addon1" value="">
+                    <input asp-for="Txt_Descricao_Permissao" type="text" class="form-control" placeholder="Incluir descrição" aria-label="Txt_Descricao_Permissao" aria-describedby="basic-addon1" value="">
+                    <div class="input-group-append">
+                        <button type="submit" class="btn btn-dark">Cadastrar</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="row">
+            <!-- Tabela de permissões -->
+            <table class="table  table-hover table-bordered"
+                  style="width: 70%; white-space: nowrap;" >
+                <thead>
+                    <tr>
+                        <th style="width: 1px; white-space: nowrap;">#</th>
+                        <th>Permissões</th>
+                        
+                    </tr>
+                </thead>
+                @if (Model.Permissoes.Any())
+                {
+                    <tbody>
+                        @foreach (var claim in Model.Permissoes)
+                        {
+                            <tr>
+                                 <td >
+                                    <form asp-action="RemoverPermissao" asp-controller="ControleAcesso" method="post" class="form-inline">
+                                        <input asp-for="Username" type="hidden" name="Username" value="@Model.Username" readonly />
+                                        <input asp-for="Permissao" type="hidden" name="Permissao" value="@claim" readonly>
+                                        <button type="submit" class="btn btn-danger">Remover</button>
+                                    </form>
+                                </td>
+                                <td >@claim</td>
+                            </tr>
+                        }
+                    </tbody>
+                }
+            </table>
+        </div>
+    </div>
+</section>

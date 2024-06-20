@@ -1,0 +1,37 @@
+﻿@model IDictionary<string,bool>
+
+<section class="container padding-y">
+    <div class="container text-center">
+        <div class="row">
+            <table class="table  table-hover table-bordered" style="width: 70%; white-space: nowrap;" >
+                <thead>
+                    <tr>
+                        <th style="width: 1px; white-space: nowrap;">#</th>
+                        <th>Usuários Sistema</th>
+                        
+                    </tr>
+                </thead>
+                @if (Model.Any())
+                {
+                    <tbody>
+                        @foreach(var usuario in Model)
+                        {
+                            <tr>
+                                <td>
+                                    <form asp-action="AlterarStatusAtivo" asp-controller="Usuario" method="post" class="form-inline">
+                                        <input  type="hidden" name="codUsuario"      value="@usuario.Key"   readonly>
+                                        <input  type="hidden" name="indAtivo"      value="@usuario.Value"   readonly>
+                                        <button type="submit" class="btn btn-dark">
+                                            @(!usuario.Value ? "Habilitar" : "Desabilitar") 
+                                        </button>
+                                    </form>
+                                </td>
+                                <td class="@(!usuario.Value ? "text-danger" : "text-primary") ">@usuario.Key</td>
+                            </tr>
+                        }
+                    </tbody>
+                }
+            </table>
+        </div>
+    </div>
+</section>
