@@ -19,52 +19,52 @@ A seguir, uma lista de exemplos de funções que representam o menu do sistema. 
 ### Menu Principal
 
 1. **Dashboard** <br>
-    <progress value="0" max="100"></progress>
+    ![](https://geps.dev/progress/0?dangerColor=800000&warningColor=ff9900&successColor=006600)
     - Visão geral das atividades do pet-shop.
 
 2. **Clientes** <br>
-    <progress value="0" max="100"></progress>
+    ![](https://geps.dev/progress/32?dangerColor=800000&warningColor=ff9900&successColor=006600)
     - Cadastro de Clientes
     - Consulta de Clientes
     - Atualização de Dados dos Clientes
 
 3. **Pets** <br>
-    <progress value="0" max="100"></progress>
+    ![](https://geps.dev/progress/32?dangerColor=800000&warningColor=ff9900&successColor=006600)
     - Cadastro de Pets
     - Consulta de Pets
     - Atualização de Informações dos Pets
 
 4. **Agendamentos** <br>
-    <progress value="0" max="100"></progress>
+    ![](https://geps.dev/progress/32?dangerColor=800000&warningColor=ff9900&successColor=006600)
     - Agendamento de Serviços
     - Consulta de Agendamentos
     - Cancelamento de Agendamentos
 
 5. **Serviços** <br>
-    <progress value="0" max="100"></progress>
+    ![](https://geps.dev/progress/32?dangerColor=800000&warningColor=ff9900&successColor=006600)
     - Lista de Serviços Oferecidos
     - Preços e Descrições dos Serviços
 
 6. **Produtos** <br>
-    <progress value="0" max="100"></progress>
+    ![](https://geps.dev/progress/32?dangerColor=800000&warningColor=ff9900&successColor=006600)
     - Cadastro de Produtos
     - Consulta de Produtos
     - Atualização de Informações dos Produtos
 
 7. **Vendas** <br>
-    <progress value="0" max="100"></progress>
+    ![](https://geps.dev/progress/32?dangerColor=800000&warningColor=ff9900&successColor=006600)
     - Registro de Vendas
     - Histórico de Vendas
     - Relatórios de Vendas
 
 8. **Funcionários** <br>
-    <progress value="0" max="100"></progress>
+    ![](https://geps.dev/progress/32?dangerColor=800000&warningColor=ff9900&successColor=006600)
     - Cadastro de Funcionários
     - Consulta de Funcionários
     - Atribuição de Permissões e Perfis
 
 9. **Configurações** <br>
-    <progress value="0" max="100"></progress>
+    ![](https://geps.dev/progress/32?dangerColor=800000&warningColor=ff9900&successColor=006600)
     - Parâmetros do Sistema
     - Gestão de Perfis e Permissões
     - Configurações de Segurança
