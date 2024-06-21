@@ -1,67 +1,111 @@
 ﻿@using Services.Models
 @model IList<PerfilModel>
-<section class="d-flex flex-column align-items-center justify-content-center">
+@section scripts{
+    <style>
+        .dt-search {
+            float: none !important;
+            display: flex;
+            align-items: center;
+        }
+    </style>
+}
 
-    <div class="col-md-6">
-        @if (Model.Any())
-        {
-            <table class="table table-striped table-bordered">
-                <thead class="thead-dark">
+<section class="container">
+    <div class="row">
+         <h2 class="my-4 text-center">Painel de Controle</h2>
+            <div class="my-2 text-center">
+                 <a asp-controller="Perfil" asp-action="NovoCadastro" class="btn btn-dark" title="Novo Cadastro">
+                    Cadastrar
+                </a>
+            </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <table id="userTable" class="table table-bordered mt-4">
+                <thead>
                     <tr>
-                        <th scope="col">Nome</th>
-                        <th scope="col">Data de Cadastro</th>
+                        <th>Nome</th>
+                        <th>Username</th>
                         <th scope="col">Email</th>
-                        <th scope="col">Ações</th>
+                        <th>Status</th>
+                        <th>Ações</th>
                     </tr>
                 </thead>
                 <tbody>
-                     @foreach (var item in Model)
-                        {
-                            <tr style="color: @(item.IND_ATIVO ? "blue" : "red" )">
-                                <td>@item.NOM_USUARIO</td>
-                                <td>@item.DT_REGISTRO.ToString("dd/MM/yyyy")</td>
-                                <td>@item.TXT_EMAIL</td>
-                                <td>
-                                    <div class="btn-group" role="group">
-                                       
-                                       @if(item.IND_ATIVO)
-                                       {
-                                            <a asp-controller="Perfil" asp-action="EditarCadastro" asp-route-id="@item.COD_USUARIO" class="btn btn-warning" title="Editar Cadastro">
-                                                Editar
-                                            </a>
+                    @foreach (var item in Model)
+                    {
+                       <tr>
+                            <td>@item.NOM_USUARIO</td>
 
-                                            <form asp-controller="Perfil" asp-action="DesativarCadastro" method="post" asp-route-id="@item.COD_USUARIO"  onsubmit="return confirm('Tem certeza que deseja desativar este cadastro?');">
-                                                <button type="submit" class="btn btn-danger">Desativar</button>
-                                            </form>
-                                       }
-                                       else
-                                       {
-                                            <form asp-controller="Perfil" asp-action="AtivarCadastro" method="post" asp-route-id="@item.COD_USUARIO" >
-                                                <button type="submit" class="btn btn-primary"> Ativar  </button>
-                                            </form>
-                                       }
-                                      
+                            <td>@item.COD_USUARIO</td>
 
-                                    </div>
-                                </td>
-                            </tr>
-                        }
+                            <td>@item.TXT_EMAIL</td>
+
+                            <td class="text-center">
+                                <span class="badge bg-@(item.IND_ATIVO ? "success" : "secondary")"> 
+                                    @(item.IND_ATIVO ? "Ativo" : "Inativo")
+                                </span>
+                            </td>
+                        
+                            <td>
+                                <div class="btn-group" role="group"> 
+                                    @if(item.IND_ATIVO)
+                                    {
+                                         <a asp-controller="Perfil" asp-action="EditarCadastro" asp-route-id="@item.COD_USUARIO" class="btn btn-outline-secondary btn-sm" title="Editar Cadastro">
+                                             <i class="fa fa-edit"></i>
+                                         </a>
+
+                                         <form asp-controller="Perfil" asp-action="DesativarCadastro" method="post" asp-route-id="@item.COD_USUARIO"  onsubmit="return confirm('Tem certeza que deseja desativar este cadastro?');">
+                                             <button type="submit" class="btn btn-outline-danger btn-sm"><i class="fa fa-trash"></i></button>
+                                         </form>
+                                    }
+                                    else
+                                    {
+                                         <form asp-controller="Perfil" asp-action="AtivarCadastro" method="post" asp-route-id="@item.COD_USUARIO" >
+                                             <button type="submit" class="btn btn-outline-primary btn-sm"> <i class="fa fa-check"></i>  </button> 
+                                         </form>
+                                    }
+                                </div>
+                            </td>
+                       </tr>
+                    }
                 </tbody>
-            </table>        
-        }
-        else
-        {
-            <p style="padding:50px;">
-                <td colspan="6" class="text-center">Nenhum cadastro encontrado</td>
-            </p>
-        }
-    </div>
-
-    <div class="row mb-3">
-        <div class="col text-center">
-            <a asp-controller="Perfil" asp-action="NovoCadastro" class="btn btn-dark" title="Novo Cadastro">
-                Novo Cadastro
-            </a>
+            </table>
         </div>
     </div>
 </section>
+
+
+
+
+
+
+<script>
+       $(document).ready(function() {
+            $('#userTable').DataTable({
+                "paging": true, // Mantém a paginação ativada
+                "lengthChange": false, // Remove o seletor "entries per page"
+                "pageLength": 10, // Limita a 10 registros por página
+                "info": true,   // Ativa a informação sobre o número de entradas
+                "searching": true, // Ativa a barra de pesquisa
+                "order": [[0, "asc"]], // Ordena inicialmente pela primeira coluna (Name)
+                "columnDefs": [
+                    { "orderable": true, "targets": 0 }, // Ordenação habilitada para a primeira coluna
+                    { "orderable": false, "targets": [1, 2, 3] } // Ordenação desabilitada para outras colunas
+                ],
+                "language": {
+                    "search": "Pesquisar:",
+                    "paginate": {
+                        "first": "Primeiro",
+                        "last": "Último",
+                        "next": "Próximo",
+                        "previous": "Anterior"
+                    },
+                    "zeroRecords": "Nenhum registro encontrado",
+                    "infoFiltered": "(filtrado de _MAX_ registros no total)",
+                    "infoEmpty": "Mostrando 0 a 0 de 0 registros",
+                    "info": "Mostrando _START_ a _END_ de _TOTAL_ registros"
+                }
+            });
+        });
+    </script>

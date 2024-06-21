@@ -2,56 +2,61 @@
 @inject IAspNetUserService AspNetUser
 
 <style>
-    .closebtn {
+    #closebtn {
         margin: 0 30px 0 0;
         top: 0;
         right: 25px;
         font-size: 36px;
     }
     
-    .sidenav {
+    #sidenav {
         width: 280px;
         height: 100vh;
         background-color: #2F1242;
-        transition: 0.5s;
+        transition: width 0.5s; /* Transição apenas para a largura - duração da transição (0.5s = 500ms)*/
         font-family: "Lato", sans-serif;
     }
     
-    .sidenav a {
+    #sidenav a {
         padding: 8px 8px 8px 32px;
         text-decoration: none;
         font-size: 25px;
         color: #818181;
-        transition: 0.8s;
+        transition: 0.5s;
     }
     
-    .closebtn:hover {
+    #closebtn:hover {
         color: #f1f1f1;
     }
+
     .nav-item a:hover {
         color: #f1f1f1;
         background-color: #f799f7;
     }
 </style>
+
 <script>
+
     function navOperation() {
-        let content = document.getElementById("contentMenu");
-        let sideNav = document.getElementById("mySidenav").style;
+        let $content = $("#contentMenu");
+        let $hidden = $content.prop('hidden');
+        let $sideNav = $("#sidenav");
+        let $timeTransition = $hidden ? parseFloat($sideNav.css('transition-duration')) * 1000 : 0;
+    
+        $sideNav.css('width', ($hidden ? '280px':'85px'));
+        setTimeout(() => {
+                $content.prop('hidden', !$hidden);
 
-        if (content.hidden) 
-            sideNav.width = "280px";
-        else 
-            sideNav.width = "85px";
+            }, $timeTransition);
 
-        content.hidden = !content.hidden;
     }
 </script>
 
 
 @if (AspNetUser.IsAuthenticated)
 {
-    <nav id="mySidenav" class="col-md-2 d-none d-md-block padding-top sidenav">
-        <a href="javascript:void(0)" class="d-flex flex-row-reverse closebtn" onclick="navOperation()">&#9776;</a>
+    <nav id="sidenav" class="col-md-2 d-none d-md-block padding-top">
+        <a id="closebtn" href="javascript:void(0)" class="d-flex flex-row-reverse" onclick="navOperation()">&#9776;</a>
         <div id="contentMenu">
             <div class="dropdown-divider "></div>
             <div class="row-sm text-center">
